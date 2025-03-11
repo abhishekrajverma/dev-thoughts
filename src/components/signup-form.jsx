@@ -13,7 +13,15 @@ import { Label } from "@/components/ui/label"
 
 export function SignUpForm({
   className,
+  name,
+  setName,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  handleSubmit,
   ...props
+
 }) {
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -25,7 +33,7 @@ export function SignUpForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
                 <Button variant="outline" className="w-full">
@@ -54,11 +62,25 @@ export function SignUpForm({
               <div className="grid gap-6">
                 <div className="grid gap-3">
                   <Label htmlFor="email">Name</Label>
-                  <Input id="name" type="text" placeholder="example com" required />
+                  <Input 
+                  id="name" 
+                  type="text" 
+                  placeholder="example com"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)} 
+                  required 
+                  />
                 </div>
                 <div className="grid gap-3">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="m@example.com" required />
+                  <Input 
+                  id="email" 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="m@example.com" 
+                  required 
+                  />
                 </div>
                 <div className="grid gap-3">
                   <div className="flex items-center">
@@ -67,7 +89,14 @@ export function SignUpForm({
                       Forgot your password?
                     </a>
                   </div>
-                  <Input id="password" type="password" required />
+                  <Input 
+                  id="password" 
+                  type="password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="********"
+                  required 
+                  />
                 </div>
                 <Button type="submit" className="w-full">
                   Sign up
@@ -81,11 +110,14 @@ export function SignUpForm({
           </form>
         </CardContent>
       </Card>
-      <div
+
+       {/* Terms of Service and Privacy Policy  */}
+
+      {/* <div
         className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
-      </div>
+        By clicking continue, you agree to our <Link href="#">Terms of Service</Link>{" "}
+        and <Link href="#">Privacy Policy</Link>.
+      </div> */}
     </div>
   );
 }
